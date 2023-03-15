@@ -51,7 +51,7 @@ public class Main {
                         int ShipPositioLeft = in.nextInt();
                         out.println("Укажите координаты СВЕРХУ!.");
                         int ShipPositionUp = in.nextInt();
-                        if ((ShipPositioLeft  > 10 || ShipPositioLeft <= 0) && (ShipPositionUp > 10 || ShipPositioLeft  <= 0)){
+                        if ((ShipPositioLeft  > 1 || ShipPositioLeft <= 0) && (ShipPositionUp > 10 || ShipPositioLeft  <= 0)){
                             out.println("Неверное значение.");
                             break;
                         }
