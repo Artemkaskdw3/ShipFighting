@@ -12,8 +12,8 @@ public class Main {
         int forNumberUp = 0;
         int forNumberLeft = 0;
         // ЗАПОЛНЕНИЕ ПОЛЯ
-        for (int i = 0; i < 12; i++){
-            for (int j = 0; j < 12; j++){
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 12; j++) {
 
                 if (i == 0 && j == j) {
 
@@ -37,81 +37,85 @@ public class Main {
         int coutnOneShip = 4;
         int coutnTwoShip = 3;
         int choiceAboutShip = 0;
-        while (true){
+        while (true) {
             out.println("\nПоставте корабль на поле: \n1. Однопалубный \n2. Двухпалубный \n3. Трехпалубный \n4. Четырехпалубный \n5. ПОКАЗАТЬ ПОЛЕ\n");
             choiceAboutShip = in.nextInt();
-            switch (choiceAboutShip){
+            switch (choiceAboutShip) {
                 case 1:
-                    if (coutnOneShip <= 0){
+                    if (coutnOneShip <= 0) {
                         out.println("нельзя ставить однопалубный корабль больше 4");
                         break;
 
                     }
 
-                        out.println("Укажите координаты СЛЕВА!.");
-                        int ShipPositioLeft = in.nextInt();
-                        out.println("Укажите координаты СВЕРХУ!.");
-                        int ShipPositionUp = in.nextInt();
-                        if ((ShipPositioLeft  > 10 || ShipPositioLeft <= 0) && (ShipPositionUp > 10 || ShipPositioLeft  <= 0)){
-                            out.println("Неверное значение.");
-                            break;
-                        }
+                    out.println("Укажите координаты СЛЕВА!.");
+                    String ShipPositioLeftInput = in.next();
+                    out.println("Укажите координаты СВЕРХУ!.");
+                    int ShipPositionUp = in.nextInt();
+                    if (Util.toNumber(ShipPositioLeftInput) == null) {
+                        out.println("Is not number");
+                        break;
+                    }
+
+                    int ShipPositioLeft = Util.toNumber(ShipPositioLeftInput);
 
 
-                        // В этом ифе проверка идет на то что вокруг нет других корабликов
-                        if (fieldPlayer[ShipPositioLeft + 1][ShipPositionUp] != 1 &&
-                                fieldPlayer[ShipPositioLeft][ShipPositionUp] != 1 &&
-                                fieldPlayer[ShipPositioLeft - 1][ShipPositionUp] != 1 &&
-                                fieldPlayer[ShipPositioLeft][ShipPositionUp + 1] != 1 &&
-                                fieldPlayer[ShipPositioLeft][ShipPositionUp - 1] != 1 &&
-                                fieldPlayer[ShipPositioLeft + 1][ShipPositionUp + 1] != 1 &&
-                                fieldPlayer[ShipPositioLeft + 1][ShipPositionUp - 1] != 1 &&
-                                fieldPlayer[ShipPositioLeft - 1][ShipPositionUp + 1] != 1 &&
-                                fieldPlayer[ShipPositioLeft - 1][ShipPositionUp - 1] != 1 &&
-                                ShipPositioLeft >= 2 && ShipPositionUp >= 2) {
+                    if ((ShipPositioLeft > 10 || ShipPositioLeft <= 0) && (ShipPositionUp > 10 || ShipPositioLeft <= 0)) {
+                        out.println("Неверное значение.");
+                        break;
+                    }
 
-                                fieldPlayer[ShipPositioLeft][ShipPositionUp] = 1;
-                                out.println("\nВы успешно поставили корабль ✓✓✓");
 
-                        }
-                        else if(ShipPositioLeft == 1 && ShipPositionUp >= 2 &&
-                                fieldPlayer[ShipPositioLeft][ShipPositionUp] != 1 &&
-                                fieldPlayer[ShipPositioLeft][ShipPositionUp - 1] != 1 &&
-                                fieldPlayer[ShipPositioLeft][ShipPositionUp + 1] != 1 &&
-                                fieldPlayer[ShipPositioLeft + 1][ShipPositionUp] != 1 &&
-                                fieldPlayer[ShipPositioLeft + 1][ShipPositionUp + 1] != 1 &&
-                                fieldPlayer[ShipPositioLeft + 1][ShipPositionUp - 1] != 1){
+                    // В этом ифе проверка идет на то что вокруг нет других корабликов
+                    if (fieldPlayer[ShipPositioLeft + 1][ShipPositionUp] != 1 &&
+                            fieldPlayer[ShipPositioLeft][ShipPositionUp] != 1 &&
+                            fieldPlayer[ShipPositioLeft - 1][ShipPositionUp] != 1 &&
+                            fieldPlayer[ShipPositioLeft][ShipPositionUp + 1] != 1 &&
+                            fieldPlayer[ShipPositioLeft][ShipPositionUp - 1] != 1 &&
+                            fieldPlayer[ShipPositioLeft + 1][ShipPositionUp + 1] != 1 &&
+                            fieldPlayer[ShipPositioLeft + 1][ShipPositionUp - 1] != 1 &&
+                            fieldPlayer[ShipPositioLeft - 1][ShipPositionUp + 1] != 1 &&
+                            fieldPlayer[ShipPositioLeft - 1][ShipPositionUp - 1] != 1 &&
+                            ShipPositioLeft >= 2 && ShipPositionUp >= 2) {
 
-                            fieldPlayer[ShipPositioLeft][ShipPositionUp] = 1;
-                            out.println("\nВы успешно поставили корабль ✓✓✓");
+                        fieldPlayer[ShipPositioLeft][ShipPositionUp] = 1;
+                        out.println("\nВы успешно поставили корабль ✓✓✓");
 
-                        }
-                        else if(ShipPositioLeft >= 2 && ShipPositionUp == 1 &&
-                                fieldPlayer[ShipPositioLeft][ShipPositionUp] != 1 &&
-                                fieldPlayer[ShipPositioLeft + 1][ShipPositionUp] != 1 &&
-                                fieldPlayer[ShipPositioLeft - 1][ShipPositionUp] != 1 &&
-                                fieldPlayer[ShipPositioLeft - 1][ShipPositionUp + 1] != 1 &&
-                                fieldPlayer[ShipPositioLeft + 1][ShipPositionUp + 1] != 1 &&
-                                fieldPlayer[ShipPositioLeft][ShipPositionUp + 1] != 1){
+                    } else if (ShipPositioLeft == 1 && ShipPositionUp >= 2 &&
+                            fieldPlayer[ShipPositioLeft][ShipPositionUp] != 1 &&
+                            fieldPlayer[ShipPositioLeft][ShipPositionUp - 1] != 1 &&
+                            fieldPlayer[ShipPositioLeft][ShipPositionUp + 1] != 1 &&
+                            fieldPlayer[ShipPositioLeft + 1][ShipPositionUp] != 1 &&
+                            fieldPlayer[ShipPositioLeft + 1][ShipPositionUp + 1] != 1 &&
+                            fieldPlayer[ShipPositioLeft + 1][ShipPositionUp - 1] != 1) {
 
-                            fieldPlayer[ShipPositioLeft][ShipPositionUp] = 1;
-                            out.println("\nВы успешно поставили корабль ✓✓✓");
+                        fieldPlayer[ShipPositioLeft][ShipPositionUp] = 1;
+                        out.println("\nВы успешно поставили корабль ✓✓✓");
 
-                        }
-                        else if(ShipPositioLeft == 1 && ShipPositionUp == 1 &&
-                                fieldPlayer[ShipPositioLeft + 1][ShipPositionUp] != 1 &&
-                                fieldPlayer[ShipPositioLeft + 1][ShipPositionUp + 1] != 1 &&
-                                fieldPlayer[ShipPositioLeft][ShipPositionUp + 1] != 1 ){
-                                    fieldPlayer[ShipPositioLeft][ShipPositionUp] = 1;
-                                    out.println("\nВы успешно поставили корабль ✓✓✓");
-                        }
-                        else{
-                            out.println("__________________________________________________ \n");
-                            out.println("СЛИШКОМ БЛИЗКО К ДРУГОМУ КОРАБЛЮ!!!!");
-                            out.println("__________________________________________________");
-                            break;
-                        }
-                        coutnOneShip--;
+                    } else if (ShipPositioLeft >= 2 && ShipPositionUp == 1 &&
+                            fieldPlayer[ShipPositioLeft][ShipPositionUp] != 1 &&
+                            fieldPlayer[ShipPositioLeft + 1][ShipPositionUp] != 1 &&
+                            fieldPlayer[ShipPositioLeft - 1][ShipPositionUp] != 1 &&
+                            fieldPlayer[ShipPositioLeft - 1][ShipPositionUp + 1] != 1 &&
+                            fieldPlayer[ShipPositioLeft + 1][ShipPositionUp + 1] != 1 &&
+                            fieldPlayer[ShipPositioLeft][ShipPositionUp + 1] != 1) {
+
+                        fieldPlayer[ShipPositioLeft][ShipPositionUp] = 1;
+                        out.println("\nВы успешно поставили корабль ✓✓✓");
+
+                    } else if (ShipPositioLeft == 1 && ShipPositionUp == 1 &&
+                            fieldPlayer[ShipPositioLeft + 1][ShipPositionUp] != 1 &&
+                            fieldPlayer[ShipPositioLeft + 1][ShipPositionUp + 1] != 1 &&
+                            fieldPlayer[ShipPositioLeft][ShipPositionUp + 1] != 1) {
+                        fieldPlayer[ShipPositioLeft][ShipPositionUp] = 1;
+                        out.println("\nВы успешно поставили корабль ✓✓✓");
+                    } else {
+                        out.println("__________________________________________________ \n");
+                        out.println("СЛИШКОМ БЛИЗКО К ДРУГОМУ КОРАБЛЮ!!!!");
+                        out.println("__________________________________________________");
+                        break;
+                    }
+                    coutnOneShip--;
 
 //
 
@@ -120,80 +124,80 @@ public class Main {
 
                     boolean horizontal = true;
 
-                    if (coutnTwoShip <= 0){
+                    if (coutnTwoShip <= 0) {
                         out.println("нельзя ставить двухпалубный корабль больше 3");
                         break;
                     }
 
-                        out.println("Укажите координаты СЛЕВА!.");
-                        int TwoShipPositioLeft = in.nextInt();
-                        out.println("Укажите координаты СВЕРХУ!.");
-                        int TwoShipPositionUp = in.nextInt();
-                        out.println("1. Вертикально\n2. Горизонтально");
-                        int choicePosition = in.nextInt();
-                        if (choicePosition == 2){
-                            horizontal = false;
+                    out.println("Укажите координаты СЛЕВА!.");
+                    int TwoShipPositioLeft = in.nextInt();
+                    out.println("Укажите координаты СВЕРХУ!.");
+                    int TwoShipPositionUp = in.nextInt();
+                    out.println("1. Вертикально\n2. Горизонтально");
+                    int choicePosition = in.nextInt();
+                    if (choicePosition == 2) {
+                        horizontal = false;
+                    }
+
+                    if (horizontal && TwoShipPositioLeft >= 2 && fieldPlayer[TwoShipPositioLeft][TwoShipPositionUp] != 1 &&
+                            fieldPlayer[TwoShipPositioLeft + 1][TwoShipPositionUp] != 1 &&
+                            fieldPlayer[TwoShipPositioLeft + 1][TwoShipPositionUp - 1] != 1 &&
+                            fieldPlayer[TwoShipPositioLeft + 1][TwoShipPositionUp + 1] != 1 &&
+                            fieldPlayer[TwoShipPositioLeft][TwoShipPositionUp + 1] != 1 &&
+                            fieldPlayer[TwoShipPositioLeft][TwoShipPositionUp - 1] != 1 &&
+                            fieldPlayer[TwoShipPositioLeft - 1][TwoShipPositionUp] != 1 &&
+                            fieldPlayer[TwoShipPositioLeft - 1][TwoShipPositionUp - 1] != 1 &&
+                            fieldPlayer[TwoShipPositioLeft - 1][TwoShipPositionUp + 1] != 1 &&
+                            fieldPlayer[TwoShipPositioLeft - 2][TwoShipPositionUp] != 1 &&
+                            fieldPlayer[TwoShipPositioLeft - 2][TwoShipPositionUp] != 1 &&
+                            fieldPlayer[TwoShipPositioLeft - 2][TwoShipPositionUp + 1] != 1 &&
+                            fieldPlayer[TwoShipPositioLeft - 2][TwoShipPositionUp - 1] != 1) {
+
+                        for (int j = TwoShipPositioLeft; j > TwoShipPositioLeft - 2; j--) {
+                            fieldPlayer[j][TwoShipPositionUp] = 1;
                         }
+                        out.println("\nВы успешно поставили двухпалубный корабль ✓✓✓");
+                        coutnTwoShip--;
 
-                        if (horizontal && TwoShipPositioLeft >= 2 && fieldPlayer[TwoShipPositioLeft][TwoShipPositionUp] != 1 &&
-                                fieldPlayer[TwoShipPositioLeft + 1][TwoShipPositionUp] != 1 &&
-                                fieldPlayer[TwoShipPositioLeft + 1][TwoShipPositionUp -1] != 1 &&
-                                fieldPlayer[TwoShipPositioLeft + 1][TwoShipPositionUp + 1] != 1 &&
-                                fieldPlayer[TwoShipPositioLeft][TwoShipPositionUp + 1] != 1 &&
-                                fieldPlayer[TwoShipPositioLeft][TwoShipPositionUp - 1] != 1 &&
-                                fieldPlayer[TwoShipPositioLeft - 1][TwoShipPositionUp] != 1 &&
-                                fieldPlayer[TwoShipPositioLeft - 1][TwoShipPositionUp - 1] != 1 &&
-                                fieldPlayer[TwoShipPositioLeft - 1][TwoShipPositionUp + 1] != 1 &&
-                                fieldPlayer[TwoShipPositioLeft - 2][TwoShipPositionUp] != 1 &&
-                                fieldPlayer[TwoShipPositioLeft - 2][TwoShipPositionUp] != 1 &&
-                                fieldPlayer[TwoShipPositioLeft - 2][TwoShipPositionUp + 1] != 1 &&
-                                fieldPlayer[TwoShipPositioLeft - 2][TwoShipPositionUp - 1] != 1){
-
-                                for (int j = TwoShipPositioLeft; j > TwoShipPositioLeft - 2; j--){
-                                fieldPlayer[j][TwoShipPositionUp] = 1;
-                            }
-                                out.println("\nВы успешно поставили двухпалубный корабль ✓✓✓");
-                            coutnTwoShip--;
-
-                        }else if(!horizontal && fieldPlayer[TwoShipPositionUp][TwoShipPositioLeft] != 1 &&
-                                fieldPlayer[TwoShipPositionUp - 1][TwoShipPositioLeft] != 1 &&
-                                fieldPlayer[TwoShipPositionUp - 1][TwoShipPositioLeft + 1] != 1 &&
-                                fieldPlayer[TwoShipPositionUp - 1][TwoShipPositioLeft - 1] != 1 &&
-                                fieldPlayer[TwoShipPositionUp][TwoShipPositioLeft - 1] != 1 &&
-                                fieldPlayer[TwoShipPositionUp][TwoShipPositioLeft + 1] != 1 &&
-                                fieldPlayer[TwoShipPositionUp + 1][TwoShipPositioLeft] != 1 &&
-                                fieldPlayer[TwoShipPositionUp + 1][TwoShipPositioLeft - 1] != 1 &&
-                                fieldPlayer[TwoShipPositionUp + 1][TwoShipPositioLeft + 1] != 1 &&
-                                fieldPlayer[TwoShipPositionUp + 2][TwoShipPositioLeft] != 1 &&
-                                fieldPlayer[TwoShipPositionUp + 2][TwoShipPositioLeft + 1] != 1 &&
-                                fieldPlayer[TwoShipPositionUp + 2][TwoShipPositioLeft - 1] != 1 && TwoShipPositionUp < 10){
-                            for (int j = TwoShipPositionUp; j < TwoShipPositionUp + 2; j++){
-                                fieldPlayer[TwoShipPositioLeft][j] = 1;
-                            }
-                            out.println("\nВы успешно поставили двухпалубный корабльs ✓✓✓");
-                            coutnTwoShip--;
+                    } else if (!horizontal && fieldPlayer[TwoShipPositionUp][TwoShipPositioLeft] != 1 &&
+                            fieldPlayer[TwoShipPositionUp - 1][TwoShipPositioLeft] != 1 &&
+                            fieldPlayer[TwoShipPositionUp - 1][TwoShipPositioLeft + 1] != 1 &&
+                            fieldPlayer[TwoShipPositionUp - 1][TwoShipPositioLeft - 1] != 1 &&
+                            fieldPlayer[TwoShipPositionUp][TwoShipPositioLeft - 1] != 1 &&
+                            fieldPlayer[TwoShipPositionUp][TwoShipPositioLeft + 1] != 1 &&
+                            fieldPlayer[TwoShipPositionUp + 1][TwoShipPositioLeft] != 1 &&
+                            fieldPlayer[TwoShipPositionUp + 1][TwoShipPositioLeft - 1] != 1 &&
+                            fieldPlayer[TwoShipPositionUp + 1][TwoShipPositioLeft + 1] != 1 &&
+                            fieldPlayer[TwoShipPositionUp + 2][TwoShipPositioLeft] != 1 &&
+                            fieldPlayer[TwoShipPositionUp + 2][TwoShipPositioLeft + 1] != 1 &&
+                            fieldPlayer[TwoShipPositionUp + 2][TwoShipPositioLeft - 1] != 1 && TwoShipPositionUp < 10) {
+                        for (int j = TwoShipPositionUp; j < TwoShipPositionUp + 2; j++) {
+                            fieldPlayer[TwoShipPositioLeft][j] = 1;
                         }
-                        else{
-                            out.println("Слишком близко к границе или к другому кораблю! Невозможно поставить корабль");
-                }
-                        break;
+                        out.println("\nВы успешно поставили двухпалубный корабльs ✓✓✓");
+                        coutnTwoShip--;
+                    } else {
+                        out.println("Слишком близко к границе или к другому кораблю! Невозможно поставить корабль");
+                    }
+                    break;
 
-                case 5: ShowField(fieldPlayer) ;
-                break;
-                default: out.println("Некоректный выбор");break;
+                case 5:
+                    ShowField(fieldPlayer);
+                    break;
+                default:
+                    out.println("Некоректный выбор");
+                    break;
 
             }
         }
 
 
-
     }
 
 
-// ПОКАЗ МАТРИЦЫ
-    static void ShowField(int[][]field){
-        for (int i = 0; i < 11; i++)
-        {
+    // ПОКАЗ МАТРИЦЫ
+    static void ShowField(int[][] field) {
+        for (int i = 0; i < 11; i++) {
             for (int j = 0; j < 11; j++) {
                 out.print(field[i][j] + "\t");
                 if (i == 0 && j == j && j < 10) {
