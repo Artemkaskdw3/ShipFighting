@@ -37,7 +37,9 @@ public class Main {
         int coutnOneShip = 4;
         int coutnTwoShip = 3;
         int countThreeShip =2;
+        int countFourShip = 1;
         int choiceAboutShip = 0;
+
         while (true) {
             out.println("\nПоставте корабль на поле: \n1. Однопалубный \n2. Двухпалубный \n3. Трехпалубный \n4. Четырехпалубный \n5. ПОКАЗАТЬ ПОЛЕ\n");
             choiceAboutShip = in.nextInt();
@@ -285,23 +287,118 @@ public class Main {
                             fieldPlayer[ThreeShipPositioLeft - 1][ThreeShipPositionUp + 2] != 1 && ThreeShipPositionUp < 9 &&
                             fieldPlayer[ThreeShipPositioLeft][ThreeShipPositionUp + 3] != 1 &&
                             fieldPlayer[ThreeShipPositioLeft - 1][ThreeShipPositionUp + 3] != 1 &&
-                            fieldPlayer[ThreeShipPositioLeft + 1][ThreeShipPositionUp + 3] != 1 
+                            fieldPlayer[ThreeShipPositioLeft + 1][ThreeShipPositionUp + 3] != 1
                     ) {
                         for (int j = ThreeShipPositionUp; j < ThreeShipPositionUp + 3; j++) {
                             fieldPlayer[ThreeShipPositioLeft][j] = 1;
                         }
-                        out.println("\nВы успешно поставили двухпалубный корабль");
-                        coutnTwoShip--;
+                        out.println("\nВы успешно поставили трехпалубный корабль");
+                        countThreeShip--;
+                    } else {
+                        out.println("Слишком близко к границе или к другому кораблю! Невозможно поставить корабль");
+                    }
+                    break;
+
+                case 4:
+
+
+                    if (countFourShip <= 0) {
+                        out.println("нельзя ставить четырехпалубный корабль больше 1");
+                        break;
+                    }
+                    boolean positionFour = true;
+                    out.println("Укажите координаты СЛЕВА!.");
+                    String FourShipPositioLeftInput = in.next();
+                    out.println("Укажите координаты СВЕРХУ!.");
+                    String FourShipPositionUpInput = in.next();
+
+                    if (Util.toNumber(FourShipPositioLeftInput) == null || Util.toNumber(FourShipPositionUpInput) == null){
+
+                        out.println("\nНекоректное число");
+                        break;
+                    }
+
+                    int FourShipPositioLeft = Util.toNumber(FourShipPositioLeftInput);
+                    int FourShipPositionUp = Util.toNumber(FourShipPositionUpInput);
+
+                    if ((FourShipPositioLeft > 10 || FourShipPositioLeft <= 0) || (FourShipPositionUp > 10 || FourShipPositionUp <= 0)) {
+                        out.println("\nНеверный диапозон.");
+                        break;
+                    }
+
+                    out.println("1. Вертикально\n2. Горизонтально");
+
+                    String choicePositionForFourShipInput = in.next();
+
+                    if (Util.toNumber(choicePositionForFourShipInput) == null){
+                        out.println("Некоректное число.");
+                        break;
+                    }
+
+                    int choicePositionFour = Util.toNumber(choicePositionForFourShipInput);
+
+                    if (choicePositionFour == 2){
+                        positionFour = false;
+                    }
+
+
+
+                    if (positionFour && FourShipPositioLeft >= 4 && fieldPlayer[FourShipPositioLeft][FourShipPositionUp] != 1 &&
+                            fieldPlayer[FourShipPositioLeft + 1][FourShipPositionUp] != 1 &&
+                            fieldPlayer[FourShipPositioLeft + 1][FourShipPositionUp - 1] != 1 &&
+                            fieldPlayer[FourShipPositioLeft + 1][FourShipPositionUp + 1] != 1 &&
+                            fieldPlayer[FourShipPositioLeft][FourShipPositionUp + 1] != 1 &&
+                            fieldPlayer[FourShipPositioLeft][FourShipPositionUp - 1] != 1 &&
+                            fieldPlayer[FourShipPositioLeft - 1][FourShipPositionUp] != 1 &&
+                            fieldPlayer[FourShipPositioLeft - 1][FourShipPositionUp - 1] != 1 &&
+                            fieldPlayer[FourShipPositioLeft - 1][FourShipPositionUp + 1] != 1 &&
+                            fieldPlayer[FourShipPositioLeft - 2][FourShipPositionUp] != 1 &&
+                            fieldPlayer[FourShipPositioLeft - 2][FourShipPositionUp] != 1 &&
+                            fieldPlayer[FourShipPositioLeft - 2][FourShipPositionUp + 1] != 1 &&
+                            fieldPlayer[FourShipPositioLeft - 2][FourShipPositionUp - 1] != 1 &&
+                            fieldPlayer[FourShipPositioLeft - 3][FourShipPositionUp] != 1 &&
+                            fieldPlayer[FourShipPositioLeft - 3][FourShipPositionUp + 1] != 1 &&
+                            fieldPlayer[FourShipPositioLeft - 3][FourShipPositionUp - 1] != 1 &&
+                            fieldPlayer[FourShipPositioLeft - 4][FourShipPositionUp] != 1 &&
+                            fieldPlayer[FourShipPositioLeft - 4][FourShipPositionUp - 1] != 1 &&
+                            fieldPlayer[FourShipPositioLeft - 4][FourShipPositionUp + 1] != 1) {
+
+                        for (int j = FourShipPositioLeft; j > FourShipPositioLeft - 4; j--) {
+                            fieldPlayer[j][FourShipPositionUp] = 1;
+                        }
+                        out.println("\nВы успешно поставили четырехпалубный корабль");
+                        countFourShip--;
+
+                    }else if (!positionFour && fieldPlayer[FourShipPositioLeft][FourShipPositionUp] != 1 &&
+                            fieldPlayer[FourShipPositioLeft][FourShipPositionUp - 1] != 1 &&
+                            fieldPlayer[FourShipPositioLeft + 1][FourShipPositionUp - 1] != 1 &&
+                            fieldPlayer[FourShipPositioLeft + 1][FourShipPositionUp - 1] != 1 &&
+                            fieldPlayer[FourShipPositioLeft + 1][FourShipPositionUp] != 1 &&
+                            fieldPlayer[FourShipPositioLeft - 1][FourShipPositionUp] != 1 &&
+                            fieldPlayer[FourShipPositioLeft][FourShipPositionUp + 1] != 1 &&
+                            fieldPlayer[FourShipPositioLeft - 1][FourShipPositionUp + 1] != 1 &&
+                            fieldPlayer[FourShipPositioLeft + 1][FourShipPositionUp + 1] != 1 &&
+                            fieldPlayer[FourShipPositioLeft][FourShipPositionUp + 2] != 1 &&
+                            fieldPlayer[FourShipPositioLeft + 1][FourShipPositionUp + 2] != 1 &&
+                            fieldPlayer[FourShipPositioLeft - 1][FourShipPositionUp + 2] != 1 && FourShipPositionUp < 8 &&
+                            fieldPlayer[FourShipPositioLeft][FourShipPositionUp + 3] != 1 &&
+                            fieldPlayer[FourShipPositioLeft - 1][FourShipPositionUp + 3] != 1 &&
+                            fieldPlayer[FourShipPositioLeft + 1][FourShipPositionUp + 3] != 1 &&
+                            fieldPlayer[FourShipPositioLeft][FourShipPositionUp + 4] != 1 &&
+                            fieldPlayer[FourShipPositioLeft - 1][FourShipPositionUp + 4] != 1 &&
+                            fieldPlayer[FourShipPositioLeft + 1][FourShipPositionUp + 4] != 1) {
+                        for (int j = FourShipPositionUp; j < FourShipPositionUp + 4; j++) {
+                            fieldPlayer[FourShipPositioLeft][j] = 1;
+                        }
+                        out.println("\nВы успешно поставили четырехпалубный корабль");
+                        countFourShip--;
                     } else {
                         out.println("Слишком близко к границе или к другому кораблю! Невозможно поставить корабль");
                     }
 
 
-
-
-
-
                     break;
+
 
                 case 5:
                     ShowField(fieldPlayer);
