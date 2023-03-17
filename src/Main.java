@@ -248,7 +248,7 @@ public class Main {
 
 
 
-                    if (position && ThreeShipPositioLeft >= 2 && fieldPlayer[ThreeShipPositioLeft][ThreeShipPositionUp] != 1 &&
+                    if (position && ThreeShipPositioLeft >= 3 && fieldPlayer[ThreeShipPositioLeft][ThreeShipPositionUp] != 1 &&
                             fieldPlayer[ThreeShipPositioLeft + 1][ThreeShipPositionUp] != 1 &&
                             fieldPlayer[ThreeShipPositioLeft + 1][ThreeShipPositionUp - 1] != 1 &&
                             fieldPlayer[ThreeShipPositioLeft + 1][ThreeShipPositionUp + 1] != 1 &&
@@ -260,14 +260,40 @@ public class Main {
                             fieldPlayer[ThreeShipPositioLeft - 2][ThreeShipPositionUp] != 1 &&
                             fieldPlayer[ThreeShipPositioLeft - 2][ThreeShipPositionUp] != 1 &&
                             fieldPlayer[ThreeShipPositioLeft - 2][ThreeShipPositionUp + 1] != 1 &&
-                            fieldPlayer[ThreeShipPositioLeft - 2][ThreeShipPositionUp - 1] != 1) {
+                            fieldPlayer[ThreeShipPositioLeft - 2][ThreeShipPositionUp - 1] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft - 3][ThreeShipPositionUp] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft - 3][ThreeShipPositionUp + 1] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft - 3][ThreeShipPositionUp - 1] != 1 ) {
 
                         for (int j = ThreeShipPositioLeft; j > ThreeShipPositioLeft - 3; j--) {
                             fieldPlayer[j][ThreeShipPositionUp] = 1;
                         }
-                        out.println("\nВы успешно поставили двухпалубный корабль");
+                        out.println("\nВы успешно поставили трехпалубный корабль");
                         countThreeShip--;
 
+                    }else if (!position && fieldPlayer[ThreeShipPositioLeft][ThreeShipPositionUp] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft][ThreeShipPositionUp - 1] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft + 1][ThreeShipPositionUp - 1] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft + 1][ThreeShipPositionUp - 1] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft + 1][ThreeShipPositionUp] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft - 1][ThreeShipPositionUp] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft][ThreeShipPositionUp + 1] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft - 1][ThreeShipPositionUp + 1] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft + 1][ThreeShipPositionUp + 1] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft][ThreeShipPositionUp + 2] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft + 1][ThreeShipPositionUp + 2] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft - 1][ThreeShipPositionUp + 2] != 1 && ThreeShipPositionUp < 9 &&
+                            fieldPlayer[ThreeShipPositioLeft][ThreeShipPositionUp + 3] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft - 1][ThreeShipPositionUp + 3] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft + 1][ThreeShipPositionUp + 3] != 1 
+                    ) {
+                        for (int j = ThreeShipPositionUp; j < ThreeShipPositionUp + 3; j++) {
+                            fieldPlayer[ThreeShipPositioLeft][j] = 1;
+                        }
+                        out.println("\nВы успешно поставили двухпалубный корабль");
+                        coutnTwoShip--;
+                    } else {
+                        out.println("Слишком близко к границе или к другому кораблю! Невозможно поставить корабль");
                     }
 
 
