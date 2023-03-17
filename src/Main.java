@@ -51,17 +51,17 @@ public class Main {
                     out.println("Укажите координаты СЛЕВА!.");
                     String ShipPositioLeftInput = in.next();
                     out.println("Укажите координаты СВЕРХУ!.");
-                    int ShipPositionUp = in.nextInt();
-                    if (Util.toNumber(ShipPositioLeftInput) == null) {
-                        out.println("Is not number");
+                    String ShipPositionUpInput = in.next();
+                    if (Util.toNumber(ShipPositioLeftInput) == null  || Util.toNumber(ShipPositionUpInput) == null) {
+                        out.println("Некоректное число.");
                         break;
                     }
 
                     int ShipPositioLeft = Util.toNumber(ShipPositioLeftInput);
-
+                    int ShipPositionUp = Util.toNumber(ShipPositionUpInput);
 
                     if ((ShipPositioLeft > 10 || ShipPositioLeft <= 0) && (ShipPositionUp > 10 || ShipPositioLeft <= 0)) {
-                        out.println("Неверное значение.");
+                        out.println("Неверный диапозон.");
                         break;
                     }
 
@@ -130,10 +130,25 @@ public class Main {
                     }
 
                     out.println("Укажите координаты СЛЕВА!.");
-                    int TwoShipPositioLeft = in.nextInt();
+                    String TwoShipPositioLeftInput = in.next();
                     out.println("Укажите координаты СВЕРХУ!.");
-                    int TwoShipPositionUp = in.nextInt();
+                    String TwoShipPositionUpInput = in.next();
                     out.println("1. Вертикально\n2. Горизонтально");
+
+                    if (Util.toNumber(TwoShipPositioLeftInput) == null || Util.toNumber(TwoShipPositionUpInput) == null){
+
+                        out.println("Некоректное число");
+                        break;
+                    }
+
+                    int TwoShipPositioLeft = Util.toNumber(TwoShipPositioLeftInput);
+                    int TwoShipPositionUp = Util.toNumber(TwoShipPositionUpInput);
+
+                    if ((TwoShipPositioLeft > 10 || TwoShipPositioLeft <= 0) && (TwoShipPositionUp > 10 || TwoShipPositionUp <= 0)) {
+                        out.println("Неверный диапозон.");
+                        break;
+                    }
+
                     int choicePosition = in.nextInt();
                     if (choicePosition == 2) {
                         horizontal = false;
@@ -196,7 +211,7 @@ public class Main {
 
 
     // ПОКАЗ МАТРИЦЫ
-    static void ShowField(int[][] field) {
+   public static void ShowField(int[][] field) {
         for (int i = 0; i < 11; i++) {
             for (int j = 0; j < 11; j++) {
                 out.print(field[i][j] + "\t");
