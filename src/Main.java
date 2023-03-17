@@ -40,7 +40,7 @@ public class Main {
         int countFourShip = 1;
         int choiceAboutShip = 0;
 
-        while (true) {
+        while (countThreeShip > 0 || countFourShip > 0 || coutnTwoShip > 0 || coutnOneShip > 0) {
             out.println("\nПоставте корабль на поле: \n1. Однопалубный \n2. Двухпалубный \n3. Трехпалубный \n4. Четырехпалубный \n5. ПОКАЗАТЬ ПОЛЕ\n");
             choiceAboutShip = in.nextInt();
             switch (choiceAboutShip) {
@@ -408,9 +408,125 @@ public class Main {
                     break;
 
             }
+
         }
 
+        int countOneBOT = 4;
+        int countTwoBOT = 3;
+        int countThreeBOT = 2;
+        int countFourBOT = 1;
+        int left = 0;
+        int up = 0;
+        //Новый Цикл для того чтобы заполнить поле для  бота.
+        while (countOneBOT > 0 || countTwoBOT > 0 || countThreeBOT > 0 || countFourBOT > 0) {
 
+
+
+            if (countOneBOT > 0) {
+                left = 2 + (int) (Math.random() * 8);
+                up = 2 + (int) (Math.random() * 8);
+                if (fieldBot[left][up] != 1 &&
+                        fieldBot[left][up] != 1 &&
+                        fieldBot[left - 1][up] != 1 &&
+                        fieldBot[left][up + 1] != 1 &&
+                        fieldBot[left][up - 1] != 1 &&
+                        fieldBot[left + 1][up + 1] != 1 &&
+                        fieldBot[left + 1][up - 1] != 1 &&
+                        fieldBot[left - 1][up + 1] != 1 &&
+                        fieldBot[left - 1][up - 1] != 1 &&
+                        left >= 2 && up >= 2) {
+
+                    fieldBot[left][up] = 1;
+                    countOneBOT--;
+                }
+
+            }
+
+            if (countTwoBOT > 0) {
+                left = 2 + (int) (Math.random() * 8);
+                up = 2 + (int) (Math.random() * 8);
+                if (left >= 2 && fieldBot[left][up] != 1 &&
+                        fieldBot[left + 1][up] != 1 &&
+                        fieldBot[left + 1][up - 1] != 1 &&
+                        fieldBot[left + 1][up + 1] != 1 &&
+                        fieldBot[left][up + 1] != 1 &&
+                        fieldBot[left][up - 1] != 1 &&
+                        fieldBot[left - 1][up] != 1 &&
+                        fieldBot[left - 1][up - 1] != 1 &&
+                        fieldBot[left - 1][up + 1] != 1 &&
+                        fieldBot[left - 2][up] != 1 &&
+                        fieldBot[left - 2][up] != 1 &&
+                        fieldBot[left - 2][up + 1] != 1 &&
+                        fieldBot[left - 2][up - 1] != 1) {
+
+                    for (int j = left; j > left - 2; j--) {
+                        fieldBot[j][up] = 1;
+                    }
+                    countTwoBOT--;
+                }
+
+            }
+
+            if (countThreeBOT > 0) {
+                left = 2 + (int) (Math.random() * 8);
+                up = 2 + (int) (Math.random() * 8);
+                if (fieldBot[left][up] != 1 &&
+                        fieldBot[left][up - 1] != 1 &&
+                        fieldBot[left + 1][up - 1] != 1 &&
+                        fieldBot[left + 1][up - 1] != 1 &&
+                        fieldBot[left + 1][up] != 1 &&
+                        fieldBot[left - 1][up] != 1 &&
+                        fieldBot[left][up + 1] != 1 &&
+                        fieldBot[left - 1][up + 1] != 1 &&
+                        fieldBot[left + 1][up + 1] != 1 &&
+                        fieldBot[left][up + 2] != 1 &&
+                        fieldBot[left + 1][up + 2] != 1 &&
+                        fieldBot[left - 1][up + 2] != 1 && up < 9 &&
+                        fieldBot[left][up + 3] != 1 &&
+                        fieldBot[left - 1][up + 3] != 1 &&
+                        fieldBot[left + 1][up + 3] != 1
+                ) {
+                    for (int j = up; j < up + 3; j++) {
+                        fieldBot[left][j] = 1;
+                    }
+                    countThreeBOT--;
+                }
+            }
+            if (countFourBOT > 0) {
+                left = 2 + (int) (Math.random() * 8);
+                up = 2 + (int) (Math.random() * 8);
+                if (left >= 4 && fieldBot[left][up] != 1 &&
+                        fieldBot[left + 1][up] != 1 &&
+                        fieldBot[left + 1][up - 1] != 1 &&
+                        fieldBot[left + 1][up + 1] != 1 &&
+                        fieldBot[left][up + 1] != 1 &&
+                        fieldBot[left][up - 1] != 1 &&
+                        fieldBot[left - 1][up] != 1 &&
+                        fieldBot[left - 1][up - 1] != 1 &&
+                        fieldBot[left - 1][up + 1] != 1 &&
+                        fieldBot[left - 2][up] != 1 &&
+                        fieldBot[left - 2][up] != 1 &&
+                        fieldBot[left - 2][up + 1] != 1 &&
+                        fieldBot[left - 2][up - 1] != 1 &&
+                        fieldBot[left - 3][up] != 1 &&
+                        fieldBot[left - 3][up + 1] != 1 &&
+                        fieldBot[left - 3][up - 1] != 1 &&
+                        fieldBot[left - 4][up] != 1 &&
+                        fieldBot[left - 4][up - 1] != 1 &&
+                        fieldBot[left - 4][up + 1] != 1) {
+
+                    for (int j = left; j > left - 4; j--) {
+                        fieldBot[j][up] = 1;
+                    }
+
+                    countFourBOT--;
+
+                }
+
+            }
+
+        }
+        ShowField(fieldBot);
     }
 
 
