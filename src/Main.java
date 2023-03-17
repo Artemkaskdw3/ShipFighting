@@ -36,6 +36,7 @@ public class Main {
         // ЛОГИКА ПОСТАНОВКИ КОрАБЛЕЙ нА ПОЛЕ
         int coutnOneShip = 4;
         int coutnTwoShip = 3;
+        int countThreeShip =2;
         int choiceAboutShip = 0;
         while (true) {
             out.println("\nПоставте корабль на поле: \n1. Однопалубный \n2. Двухпалубный \n3. Трехпалубный \n4. Четырехпалубный \n5. ПОКАЗАТЬ ПОЛЕ\n");
@@ -53,15 +54,15 @@ public class Main {
                     out.println("Укажите координаты СВЕРХУ!.");
                     String ShipPositionUpInput = in.next();
                     if (Util.toNumber(ShipPositioLeftInput) == null  || Util.toNumber(ShipPositionUpInput) == null) {
-                        out.println("Некоректное число.");
+                        out.println("\nНекоректное число.");
                         break;
                     }
 
                     int ShipPositioLeft = Util.toNumber(ShipPositioLeftInput);
                     int ShipPositionUp = Util.toNumber(ShipPositionUpInput);
 
-                    if ((ShipPositioLeft > 10 || ShipPositioLeft <= 0) && (ShipPositionUp > 10 || ShipPositioLeft <= 0)) {
-                        out.println("Неверный диапозон.");
+                    if ((ShipPositioLeft > 10 || ShipPositioLeft <= 0) || (ShipPositionUp > 10 || ShipPositioLeft <= 0)) {
+                        out.println("\nНеверный диапозон.");
                         break;
                     }
 
@@ -79,7 +80,7 @@ public class Main {
                             ShipPositioLeft >= 2 && ShipPositionUp >= 2) {
 
                         fieldPlayer[ShipPositioLeft][ShipPositionUp] = 1;
-                        out.println("\nВы успешно поставили корабль ✓✓✓");
+                        out.println("\nВы успешно поставили корабль");
 
                     } else if (ShipPositioLeft == 1 && ShipPositionUp >= 2 &&
                             fieldPlayer[ShipPositioLeft][ShipPositionUp] != 1 &&
@@ -90,7 +91,7 @@ public class Main {
                             fieldPlayer[ShipPositioLeft + 1][ShipPositionUp - 1] != 1) {
 
                         fieldPlayer[ShipPositioLeft][ShipPositionUp] = 1;
-                        out.println("\nВы успешно поставили корабль ✓✓✓");
+                        out.println("\nВы успешно поставили корабль");
 
                     } else if (ShipPositioLeft >= 2 && ShipPositionUp == 1 &&
                             fieldPlayer[ShipPositioLeft][ShipPositionUp] != 1 &&
@@ -101,14 +102,14 @@ public class Main {
                             fieldPlayer[ShipPositioLeft][ShipPositionUp + 1] != 1) {
 
                         fieldPlayer[ShipPositioLeft][ShipPositionUp] = 1;
-                        out.println("\nВы успешно поставили корабль ✓✓✓");
+                        out.println("\nВы успешно поставили корабль");
 
                     } else if (ShipPositioLeft == 1 && ShipPositionUp == 1 &&
                             fieldPlayer[ShipPositioLeft + 1][ShipPositionUp] != 1 &&
                             fieldPlayer[ShipPositioLeft + 1][ShipPositionUp + 1] != 1 &&
                             fieldPlayer[ShipPositioLeft][ShipPositionUp + 1] != 1) {
                         fieldPlayer[ShipPositioLeft][ShipPositionUp] = 1;
-                        out.println("\nВы успешно поставили корабль ✓✓✓");
+                        out.println("\nВы успешно поставили корабль");
                     } else {
                         out.println("__________________________________________________ \n");
                         out.println("СЛИШКОМ БЛИЗКО К ДРУГОМУ КОРАБЛЮ!!!!");
@@ -133,23 +134,32 @@ public class Main {
                     String TwoShipPositioLeftInput = in.next();
                     out.println("Укажите координаты СВЕРХУ!.");
                     String TwoShipPositionUpInput = in.next();
-                    out.println("1. Вертикально\n2. Горизонтально");
 
                     if (Util.toNumber(TwoShipPositioLeftInput) == null || Util.toNumber(TwoShipPositionUpInput) == null){
 
-                        out.println("Некоректное число");
+                        out.println("\nНекоректное число");
                         break;
                     }
 
                     int TwoShipPositioLeft = Util.toNumber(TwoShipPositioLeftInput);
                     int TwoShipPositionUp = Util.toNumber(TwoShipPositionUpInput);
 
-                    if ((TwoShipPositioLeft > 10 || TwoShipPositioLeft <= 0) && (TwoShipPositionUp > 10 || TwoShipPositionUp <= 0)) {
-                        out.println("Неверный диапозон.");
+                    if ((TwoShipPositioLeft > 10 || TwoShipPositioLeft <= 0) || (TwoShipPositionUp > 10 || TwoShipPositionUp <= 0)) {
+                        out.println("\nНеверный диапозон.");
+
+                        break;
+                    }
+                    out.println("1. Вертикально\n2. Горизонтально");
+
+                    String choicePositionInput = in.next();
+                    if (Util.toNumber(choicePositionInput) == null){
+                        out.println("Некоректное число.");
                         break;
                     }
 
-                    int choicePosition = in.nextInt();
+                    int choicePosition = Util.toNumber(choicePositionInput);
+
+
                     if (choicePosition == 2) {
                         horizontal = false;
                     }
@@ -171,29 +181,100 @@ public class Main {
                         for (int j = TwoShipPositioLeft; j > TwoShipPositioLeft - 2; j--) {
                             fieldPlayer[j][TwoShipPositionUp] = 1;
                         }
-                        out.println("\nВы успешно поставили двухпалубный корабль ✓✓✓");
+                        out.println("\nВы успешно поставили двухпалубный корабль");
                         coutnTwoShip--;
 
-                    } else if (!horizontal && fieldPlayer[TwoShipPositionUp][TwoShipPositioLeft] != 1 &&
-                            fieldPlayer[TwoShipPositionUp - 1][TwoShipPositioLeft] != 1 &&
-                            fieldPlayer[TwoShipPositionUp - 1][TwoShipPositioLeft + 1] != 1 &&
-                            fieldPlayer[TwoShipPositionUp - 1][TwoShipPositioLeft - 1] != 1 &&
-                            fieldPlayer[TwoShipPositionUp][TwoShipPositioLeft - 1] != 1 &&
-                            fieldPlayer[TwoShipPositionUp][TwoShipPositioLeft + 1] != 1 &&
-                            fieldPlayer[TwoShipPositionUp + 1][TwoShipPositioLeft] != 1 &&
-                            fieldPlayer[TwoShipPositionUp + 1][TwoShipPositioLeft - 1] != 1 &&
-                            fieldPlayer[TwoShipPositionUp + 1][TwoShipPositioLeft + 1] != 1 &&
-                            fieldPlayer[TwoShipPositionUp + 2][TwoShipPositioLeft] != 1 &&
-                            fieldPlayer[TwoShipPositionUp + 2][TwoShipPositioLeft + 1] != 1 &&
-                            fieldPlayer[TwoShipPositionUp + 2][TwoShipPositioLeft - 1] != 1 && TwoShipPositionUp < 10) {
+                    } else if (!horizontal && fieldPlayer[TwoShipPositioLeft][TwoShipPositionUp] != 1 &&
+                            fieldPlayer[TwoShipPositioLeft][TwoShipPositionUp - 1] != 1 &&
+                            fieldPlayer[TwoShipPositioLeft + 1][TwoShipPositionUp - 1] != 1 &&
+                            fieldPlayer[TwoShipPositioLeft + 1][TwoShipPositionUp - 1] != 1 &&
+                            fieldPlayer[TwoShipPositioLeft + 1][TwoShipPositionUp] != 1 &&
+                            fieldPlayer[TwoShipPositioLeft - 1][TwoShipPositionUp] != 1 &&
+                            fieldPlayer[TwoShipPositioLeft][TwoShipPositionUp + 1] != 1 &&
+                            fieldPlayer[TwoShipPositioLeft - 1][TwoShipPositionUp + 1] != 1 &&
+                            fieldPlayer[TwoShipPositioLeft + 1][TwoShipPositionUp + 1] != 1 &&
+                            fieldPlayer[TwoShipPositioLeft][TwoShipPositionUp + 2] != 1 &&
+                            fieldPlayer[TwoShipPositioLeft + 1][TwoShipPositionUp + 2] != 1 &&
+                            fieldPlayer[TwoShipPositioLeft - 1][TwoShipPositionUp + 2] != 1 && TwoShipPositionUp < 10) {
                         for (int j = TwoShipPositionUp; j < TwoShipPositionUp + 2; j++) {
                             fieldPlayer[TwoShipPositioLeft][j] = 1;
                         }
-                        out.println("\nВы успешно поставили двухпалубный корабльs ✓✓✓");
+                        out.println("\nВы успешно поставили двухпалубный корабль");
                         coutnTwoShip--;
                     } else {
                         out.println("Слишком близко к границе или к другому кораблю! Невозможно поставить корабль");
                     }
+                    break;
+                case 3:
+
+                    if (countThreeShip <= 0) {
+                        out.println("нельзя ставить трехпалубный корабль больше 2");
+                        break;
+                    }
+                    boolean position = true;
+                    out.println("Укажите координаты СЛЕВА!.");
+                    String ThreeShipPositioLeftInput = in.next();
+                    out.println("Укажите координаты СВЕРХУ!.");
+                    String ThreeShipPositionUpInput = in.next();
+
+                    if (Util.toNumber(ThreeShipPositioLeftInput) == null || Util.toNumber(ThreeShipPositionUpInput) == null){
+
+                        out.println("\nНекоректное число");
+                        break;
+                    }
+
+                    int ThreeShipPositioLeft = Util.toNumber(ThreeShipPositioLeftInput);
+                    int ThreeShipPositionUp = Util.toNumber(ThreeShipPositionUpInput);
+
+                    if ((ThreeShipPositioLeft > 10 || ThreeShipPositioLeft <= 0) || (ThreeShipPositionUp > 10 || ThreeShipPositionUp <= 0)) {
+                        out.println("\nНеверный диапозон.");
+                        break;
+                    }
+
+                    out.println("1. Вертикально\n2. Горизонтально");
+
+                    String choicePositionForThreeShipInput = in.next();
+
+                    if (Util.toNumber(choicePositionForThreeShipInput) == null){
+                        out.println("Некоректное число.");
+                        break;
+                    }
+
+                    int choicePositionThree = Util.toNumber(choicePositionForThreeShipInput);
+
+                    if (choicePositionThree == 2){
+                        position = false;
+                    }
+
+
+
+                    if (position && ThreeShipPositioLeft >= 2 && fieldPlayer[ThreeShipPositioLeft][ThreeShipPositionUp] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft + 1][ThreeShipPositionUp] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft + 1][ThreeShipPositionUp - 1] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft + 1][ThreeShipPositionUp + 1] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft][ThreeShipPositionUp + 1] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft][ThreeShipPositionUp - 1] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft - 1][ThreeShipPositionUp] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft - 1][ThreeShipPositionUp - 1] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft - 1][ThreeShipPositionUp + 1] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft - 2][ThreeShipPositionUp] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft - 2][ThreeShipPositionUp] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft - 2][ThreeShipPositionUp + 1] != 1 &&
+                            fieldPlayer[ThreeShipPositioLeft - 2][ThreeShipPositionUp - 1] != 1) {
+
+                        for (int j = ThreeShipPositioLeft; j > ThreeShipPositioLeft - 3; j--) {
+                            fieldPlayer[j][ThreeShipPositionUp] = 1;
+                        }
+                        out.println("\nВы успешно поставили двухпалубный корабль");
+                        countThreeShip--;
+
+                    }
+
+
+
+
+
+
                     break;
 
                 case 5:
