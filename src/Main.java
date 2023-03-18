@@ -106,6 +106,7 @@ public class Main {
 
                         fieldPlayer[ShipPositioLeft][ShipPositionUp] = 1;
                         out.println("\nВы успешно поставили корабль");
+                        coutnOneShip--;
 
                     } else if (ShipPositioLeft == 1 && ShipPositionUp >= 2 &&
                             fieldPlayer[ShipPositioLeft][ShipPositionUp] != 1 &&
@@ -117,6 +118,7 @@ public class Main {
 
                         fieldPlayer[ShipPositioLeft][ShipPositionUp] = 1;
                         out.println("\nВы успешно поставили корабль");
+                        coutnOneShip--;
 
                     } else if (ShipPositioLeft >= 2 && ShipPositionUp == 1 &&
                             fieldPlayer[ShipPositioLeft][ShipPositionUp] != 1 &&
@@ -128,6 +130,7 @@ public class Main {
 
                         fieldPlayer[ShipPositioLeft][ShipPositionUp] = 1;
                         out.println("\nВы успешно поставили корабль");
+                        coutnOneShip--;
 
                     } else if (ShipPositioLeft == 1 && ShipPositionUp == 1 &&
                             fieldPlayer[ShipPositioLeft + 1][ShipPositionUp] != 1 &&
@@ -135,13 +138,14 @@ public class Main {
                             fieldPlayer[ShipPositioLeft][ShipPositionUp + 1] != 1) {
                         fieldPlayer[ShipPositioLeft][ShipPositionUp] = 1;
                         out.println("\nВы успешно поставили корабль");
+                        coutnOneShip--;
                     } else {
                         out.println("__________________________________________________ \n");
                         out.println("СЛИШКОМ БЛИЗКО К ДРУГОМУ КОРАБЛЮ!!!!");
                         out.println("__________________________________________________");
                         break;
                     }
-                    coutnOneShip--;
+
 
 //
 
@@ -549,12 +553,12 @@ public class Main {
 
         boolean isGameEnd = true;
         boolean turn = true;
-        out.println("\nИгра началась");
+        out.println("\nИгра началась\n");
         while (isGameEnd) {
             if (turn) {
                 out.println("Координаты слева");
                 String leftCordInput = in.next();
-                out.println("Координаты сверху");
+                out.println("\nКоординаты сверху");
                 String upCordInput = in.next();
                 if (Util.toNumber(leftCordInput) == null || Util.toNumber(upCordInput) == null) {
 
@@ -571,7 +575,7 @@ public class Main {
                 }
 
                 if (fieldBot[leftCord][upCord] == 1) {
-                    out.println("\nПопадание!");
+                    out.println("\nПопадание! Ходите еще раз\nСНИЗУ ПОЛЕ ПРОТИВНИКА!");
                     fieldBattle[leftCord][upCord] = 2;
                     ShowField(fieldBattle);
                     turn = true;
@@ -585,20 +589,20 @@ public class Main {
                 int leftBotCord = 1 + (int) (Math.random() * 9);
                 int upBotCord = 1 + (int) (Math.random() * 9);
                 if (fieldPlayer[leftBotCord][upBotCord] == 1) {
-                    out.println("\nПо вам попал бот! Он ходит еще раз!");
+                    out.println("\nПо вам попал бот! Он ходит еще раз!\nСНИЗУ ВАШЕ ПОЛЕ!!!");
                     fieldPlayer[leftBotCord][upBotCord] = 2;
                     ShowField(fieldPlayer);
                     turn = false;
                 } else {
-                    out.println("\nБот промахнулся\n Ход переходит вам\n");
+                    out.println("\nБот промахнулся\nХод переходит вам\n");
                     turn = true;
 
                 }
-                if (!isShipOnField(fieldBot)) {
-                    out.println("Игра окончена! Вы выиграли =");
+                if (isShipOnField(fieldBot) == 2) {
+                    out.println("Игра окончена! Вы выиграли");
                     isGameEnd = false;
                 }
-                if (!isShipOnField(fieldPlayer)) {
+                if (isShipOnField(fieldPlayer) == 2) {
                     out.println("Вы проирали!");
                     isGameEnd = false;
                 }
@@ -627,17 +631,15 @@ public class Main {
     }
 
 
-    public static boolean isShipOnField(int[][] field) {
+    public static int isShipOnField(int[][] field) {
         for (int i = 1; i < 11; i++) {
             for (int j = 1; j < 11; j++) {
                 if (field[i][j] == 1) {
-                    return true;
-                } else {
-                    return false;
+                    return 1;
                 }
             }
         }
-    return true;
+    return 2;
 
     }
 
