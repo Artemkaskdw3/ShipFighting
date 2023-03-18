@@ -9,9 +9,32 @@ public class Main {
         Scanner in = new Scanner(System.in);
         int fieldPlayer[][] = new int[12][12];
         int fieldBot[][] = new int[12][12];
+        int fieldBattle[][] = new int[12][12];
         int forNumberUp = 0;
         int forNumberLeft = 0;
         // ЗАПОЛНЕНИЕ ПОЛЯ
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 12; j++) {
+
+                if (i == 0 && j == j) {
+
+                    fieldBattle[i][j] = forNumberUp;
+                    forNumberUp++;
+
+
+                } else if (i == i && j == 0) {
+                    forNumberLeft++;
+                    fieldBattle[i][j] = forNumberLeft;
+
+
+                } else {
+                    fieldBattle[i][j] = 0;
+                }
+            }
+        }
+        // ЗАПОЛНЕНИЕ ПОЛЯ
+        forNumberUp = 0;
+        forNumberLeft = 0;
         for (int i = 0; i < 12; i++) {
             for (int j = 0; j < 12; j++) {
 
@@ -36,7 +59,7 @@ public class Main {
         // ЛОГИКА ПОСТАНОВКИ КОрАБЛЕЙ нА ПОЛЕ
         int coutnOneShip = 4;
         int coutnTwoShip = 3;
-        int countThreeShip =2;
+        int countThreeShip = 2;
         int countFourShip = 1;
         int choiceAboutShip = 0;
 
@@ -55,7 +78,7 @@ public class Main {
                     String ShipPositioLeftInput = in.next();
                     out.println("Укажите координаты СВЕРХУ!.");
                     String ShipPositionUpInput = in.next();
-                    if (Util.toNumber(ShipPositioLeftInput) == null  || Util.toNumber(ShipPositionUpInput) == null) {
+                    if (Util.toNumber(ShipPositioLeftInput) == null || Util.toNumber(ShipPositionUpInput) == null) {
                         out.println("\nНекоректное число.");
                         break;
                     }
@@ -137,7 +160,7 @@ public class Main {
                     out.println("Укажите координаты СВЕРХУ!.");
                     String TwoShipPositionUpInput = in.next();
 
-                    if (Util.toNumber(TwoShipPositioLeftInput) == null || Util.toNumber(TwoShipPositionUpInput) == null){
+                    if (Util.toNumber(TwoShipPositioLeftInput) == null || Util.toNumber(TwoShipPositionUpInput) == null) {
 
                         out.println("\nНекоректное число");
                         break;
@@ -154,7 +177,7 @@ public class Main {
                     out.println("1. Вертикально\n2. Горизонтально");
 
                     String choicePositionInput = in.next();
-                    if (Util.toNumber(choicePositionInput) == null){
+                    if (Util.toNumber(choicePositionInput) == null) {
                         out.println("Некоректное число.");
                         break;
                     }
@@ -219,7 +242,7 @@ public class Main {
                     out.println("Укажите координаты СВЕРХУ!.");
                     String ThreeShipPositionUpInput = in.next();
 
-                    if (Util.toNumber(ThreeShipPositioLeftInput) == null || Util.toNumber(ThreeShipPositionUpInput) == null){
+                    if (Util.toNumber(ThreeShipPositioLeftInput) == null || Util.toNumber(ThreeShipPositionUpInput) == null) {
 
                         out.println("\nНекоректное число");
                         break;
@@ -237,17 +260,16 @@ public class Main {
 
                     String choicePositionForThreeShipInput = in.next();
 
-                    if (Util.toNumber(choicePositionForThreeShipInput) == null){
+                    if (Util.toNumber(choicePositionForThreeShipInput) == null) {
                         out.println("Некоректное число.");
                         break;
                     }
 
                     int choicePositionThree = Util.toNumber(choicePositionForThreeShipInput);
 
-                    if (choicePositionThree == 2){
+                    if (choicePositionThree == 2) {
                         position = false;
                     }
-
 
 
                     if (position && ThreeShipPositioLeft >= 3 && fieldPlayer[ThreeShipPositioLeft][ThreeShipPositionUp] != 1 &&
@@ -265,7 +287,7 @@ public class Main {
                             fieldPlayer[ThreeShipPositioLeft - 2][ThreeShipPositionUp - 1] != 1 &&
                             fieldPlayer[ThreeShipPositioLeft - 3][ThreeShipPositionUp] != 1 &&
                             fieldPlayer[ThreeShipPositioLeft - 3][ThreeShipPositionUp + 1] != 1 &&
-                            fieldPlayer[ThreeShipPositioLeft - 3][ThreeShipPositionUp - 1] != 1 ) {
+                            fieldPlayer[ThreeShipPositioLeft - 3][ThreeShipPositionUp - 1] != 1) {
 
                         for (int j = ThreeShipPositioLeft; j > ThreeShipPositioLeft - 3; j--) {
                             fieldPlayer[j][ThreeShipPositionUp] = 1;
@@ -273,7 +295,7 @@ public class Main {
                         out.println("\nВы успешно поставили трехпалубный корабль");
                         countThreeShip--;
 
-                    }else if (!position && fieldPlayer[ThreeShipPositioLeft][ThreeShipPositionUp] != 1 &&
+                    } else if (!position && fieldPlayer[ThreeShipPositioLeft][ThreeShipPositionUp] != 1 &&
                             fieldPlayer[ThreeShipPositioLeft][ThreeShipPositionUp - 1] != 1 &&
                             fieldPlayer[ThreeShipPositioLeft + 1][ThreeShipPositionUp - 1] != 1 &&
                             fieldPlayer[ThreeShipPositioLeft + 1][ThreeShipPositionUp - 1] != 1 &&
@@ -312,7 +334,7 @@ public class Main {
                     out.println("Укажите координаты СВЕРХУ!.");
                     String FourShipPositionUpInput = in.next();
 
-                    if (Util.toNumber(FourShipPositioLeftInput) == null || Util.toNumber(FourShipPositionUpInput) == null){
+                    if (Util.toNumber(FourShipPositioLeftInput) == null || Util.toNumber(FourShipPositionUpInput) == null) {
 
                         out.println("\nНекоректное число");
                         break;
@@ -330,17 +352,16 @@ public class Main {
 
                     String choicePositionForFourShipInput = in.next();
 
-                    if (Util.toNumber(choicePositionForFourShipInput) == null){
+                    if (Util.toNumber(choicePositionForFourShipInput) == null) {
                         out.println("Некоректное число.");
                         break;
                     }
 
                     int choicePositionFour = Util.toNumber(choicePositionForFourShipInput);
 
-                    if (choicePositionFour == 2){
+                    if (choicePositionFour == 2) {
                         positionFour = false;
                     }
-
 
 
                     if (positionFour && FourShipPositioLeft >= 4 && fieldPlayer[FourShipPositioLeft][FourShipPositionUp] != 1 &&
@@ -369,7 +390,7 @@ public class Main {
                         out.println("\nВы успешно поставили четырехпалубный корабль");
                         countFourShip--;
 
-                    }else if (!positionFour && fieldPlayer[FourShipPositioLeft][FourShipPositionUp] != 1 &&
+                    } else if (!positionFour && fieldPlayer[FourShipPositioLeft][FourShipPositionUp] != 1 &&
                             fieldPlayer[FourShipPositioLeft][FourShipPositionUp - 1] != 1 &&
                             fieldPlayer[FourShipPositioLeft + 1][FourShipPositionUp - 1] != 1 &&
                             fieldPlayer[FourShipPositioLeft + 1][FourShipPositionUp - 1] != 1 &&
@@ -419,8 +440,6 @@ public class Main {
         int up = 0;
         //Новый Цикл для того чтобы заполнить поле для  бота.
         while (countOneBOT > 0 || countTwoBOT > 0 || countThreeBOT > 0 || countFourBOT > 0) {
-
-
 
             if (countOneBOT > 0) {
                 left = 2 + (int) (Math.random() * 8);
@@ -526,12 +545,76 @@ public class Main {
             }
 
         }
-        ShowField(fieldBot);
+
+
+        boolean isGameEnd = true;
+        boolean turn = true;
+        out.println("\nИгра началась");
+        while (isGameEnd) {
+            if (turn) {
+                out.println("Координаты слева");
+                String leftCordInput = in.next();
+                out.println("Координаты сверху");
+                String upCordInput = in.next();
+                if (Util.toNumber(leftCordInput) == null || Util.toNumber(upCordInput) == null) {
+
+                    out.println("\nНекоректное число");
+                    break;
+                }
+
+                int leftCord = Util.toNumber(leftCordInput);
+                int upCord = Util.toNumber(upCordInput);
+
+                if ((leftCord > 10 || leftCord <= 0) || (upCord > 10 || upCord <= 0)) {
+                    out.println("\nНеверный диапозон.");
+                    break;
+                }
+
+                if (fieldBot[leftCord][upCord] == 1){
+                    out.println("\nПопадание!");
+                    fieldBattle[leftCord][upCord] = 2;
+                    ShowField(fieldBattle);
+                    turn = true;
+                }
+                else {
+                    out.println("\nПромах! Ход переходит противнику!");
+                    turn = false;
+
+                }
+
+
+            } else {
+                int leftBotCord = 1 + (int) (Math.random() * 9);
+                int upBotCord = 1 + (int) (Math.random() * 9);
+                if (fieldPlayer[leftBotCord][upBotCord] == 1){
+                    out.println("\nПо вам попал бот! Он ходит еще раз!");
+                    fieldPlayer[leftBotCord][upBotCord] = 2;
+                    ShowField(fieldPlayer);
+                    turn = false;
+                }
+                else {
+                    out.println("\nБот промахнулся\n Ход переходит вам\n");
+                    turn = true;
+
+                }
+                if (!isShipOnField(fieldBot)){
+                    out.println("Игра окончена! Вы выиграли =");
+                    isGameEnd = false;
+                }
+                if (!isShipOnField(fieldPlayer)){
+                    out.println("Вы проирали!");
+                    isGameEnd = false;
+                }
+            }
+
+
+        }
+
     }
 
 
     // ПОКАЗ МАТРИЦЫ
-   public static void ShowField(int[][] field) {
+    public static void ShowField(int[][] field) {
         for (int i = 0; i < 11; i++) {
             for (int j = 0; j < 11; j++) {
                 out.print(field[i][j] + "\t");
@@ -542,6 +625,20 @@ public class Main {
 
             out.println();
         }
+    }
+
+    public static boolean isShipOnField(int[][] field) {
+        for (int i = 1; i < 11; i++) {
+            for (int j = 1; j < 11; j++){
+                if (field[i][j] == 1){
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+        }
+
     }
 
 
