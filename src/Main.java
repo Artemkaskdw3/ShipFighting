@@ -553,7 +553,7 @@ public class Main {
 
         boolean isGameEnd = true;
         boolean turn = true;
-        out.println("\nИгра началась\n");
+        out.println("\nИгра началась\nПРАВИЛА:\n1. Число 2 - это попадание Число 3 - это промах. Число 1 - это корабль");
         while (isGameEnd) {
             if (turn) {
                 out.println("Координаты слева");
@@ -579,8 +579,13 @@ public class Main {
                     fieldBattle[leftCord][upCord] = 2;
                     ShowField(fieldBattle);
                     turn = true;
-                } else {
+                }
+                else if(fieldBattle[leftCord][upCord] == 2 || fieldBattle[leftCord][upCord] == 3){
+                    out.println("Сюда вы уже стреляли");
+                }
+                else {
                     out.println("\nПромах! Ход переходит противнику!");
+                    fieldBattle[leftCord][upCord] = 3;
                     turn = false;
 
                 }
@@ -593,8 +598,12 @@ public class Main {
                     fieldPlayer[leftBotCord][upBotCord] = 2;
                     ShowField(fieldPlayer);
                     turn = false;
-                } else {
+                } else if(fieldPlayer[leftBotCord][upBotCord] == 2 || fieldBot[leftBotCord][upBotCord] == 3){
+                    turn = false;
+                }
+                else {
                     out.println("\nБот промахнулся\nХод переходит вам\n");
+                    fieldPlayer[leftBotCord][upBotCord] = 3;
                     turn = true;
 
                 }
