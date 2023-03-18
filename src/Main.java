@@ -570,38 +570,35 @@ public class Main {
                     break;
                 }
 
-                if (fieldBot[leftCord][upCord] == 1){
+                if (fieldBot[leftCord][upCord] == 1) {
                     out.println("\nПопадание!");
                     fieldBattle[leftCord][upCord] = 2;
                     ShowField(fieldBattle);
                     turn = true;
-                }
-                else {
+                } else {
                     out.println("\nПромах! Ход переходит противнику!");
                     turn = false;
 
                 }
 
-
-            } else {
+                        } else {
                 int leftBotCord = 1 + (int) (Math.random() * 9);
                 int upBotCord = 1 + (int) (Math.random() * 9);
-                if (fieldPlayer[leftBotCord][upBotCord] == 1){
+                if (fieldPlayer[leftBotCord][upBotCord] == 1) {
                     out.println("\nПо вам попал бот! Он ходит еще раз!");
                     fieldPlayer[leftBotCord][upBotCord] = 2;
                     ShowField(fieldPlayer);
                     turn = false;
-                }
-                else {
+                } else {
                     out.println("\nБот промахнулся\n Ход переходит вам\n");
                     turn = true;
 
                 }
-                if (!isShipOnField(fieldBot)){
+                if (!isShipOnField(fieldBot)) {
                     out.println("Игра окончена! Вы выиграли =");
                     isGameEnd = false;
                 }
-                if (!isShipOnField(fieldPlayer)){
+                if (!isShipOnField(fieldPlayer)) {
                     out.println("Вы проирали!");
                     isGameEnd = false;
                 }
@@ -611,6 +608,8 @@ public class Main {
         }
 
     }
+
+
 
 
     // ПОКАЗ МАТРИЦЫ
@@ -627,19 +626,19 @@ public class Main {
         }
     }
 
+
     public static boolean isShipOnField(int[][] field) {
         for (int i = 1; i < 11; i++) {
-            for (int j = 1; j < 11; j++){
-                if (field[i][j] == 1){
+            for (int j = 1; j < 11; j++) {
+                if (field[i][j] == 1) {
                     return true;
-                }
-                else {
+                } else {
                     return false;
                 }
             }
         }
+    return true;
 
     }
-
 
 }
